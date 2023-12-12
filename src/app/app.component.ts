@@ -4,6 +4,7 @@ import {
   Signal,
   WritableSignal,
   computed,
+  effect,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,7 +23,7 @@ export class AppComponent {
   // writable signals, los signals pueden ser de tipo escritura o de
   // solo lectura
   public count = signal(0);
-  // public salute = signal('');
+  public salute = signal('');
   public date = signal(+new Date());
   // public dateToHuman: Signal<string>
 
@@ -44,7 +45,7 @@ export class AppComponent {
     // })
 
     // los signals creados con "computed" son de SOLO LECTURA
-    // this.dateToHuman.set()  --> error
+    // this.dateToHuman.set()  // --> error
 
     // seteamos un nuevo valor al signal salute
     // this.salute.set('hola')
@@ -52,5 +53,13 @@ export class AppComponent {
     // setInterval(() => {
     //   this.salute.update((prev) => prev + 'a');
     // }, 1000);
+
+
+    effect(() => {
+      // console.log(`The current count is: ${this.count()}`);
+      // console.log(`The current salute is: ${this.salute()}`);
+      // console.log(`The current date is: ${this.date()}`);
+      // console.log(`The current dateToHuman is: ${this.dateToHuman()}`);
+    });
   }
 }
